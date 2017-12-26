@@ -8,6 +8,7 @@ import com.android.databinding.library.baseAdapters.BR;
 /**
  * Created by angle
  * 2017/12/26.
+ * 继承BaseObservable数据变化时调用notifychange同事view数据变化了
  */
 
 public class User extends BaseObservable{
