@@ -1,49 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.angle.hshb.databindingpractice.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="com.angle.hshb.databindingpractice.bean.User"/>
-        <variable
-            name="listKey"
-            type="int"/>
-        <variable
-            name="mapKey"
-            type="String"/>
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.HashMap"/>
         <variable
             name="user"
             type="User"/>
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener"/>
+        <variable
+            name="listKey"
+            type="int"/>
+        <variable
+            name="list"
+            type="ArrayList&lt;String>"/>
+        <variable
+            name="mapKey"
+            type="String"/>
+        <variable
+            name="map"
+            type="HashMap&lt;String,String>"/>
     </data>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{user.name}"
             />
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
         <TextView
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{user.age}"
             />
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
         <TextView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list.get(listKey)}"
+            />
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+        <TextView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{map[mapKey]}"
+            />
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+        <TextView
+            android:padding="10dp"
             android:id="@+id/id"
             android:onClick="@{clickListener}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            app:data="@{list}"
+            ></android.support.v7.widget.RecyclerView>
     </LinearLayout>
-
-
-
 </layout>

@@ -19,13 +19,12 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding  dataBinding;
-    ListAdapter adapter;
 
-    User user = new User("angle","25");
+    User user = new User("angle,绑定类数据","25,绑定类数据");
     private ArrayList<String> mData = new ArrayList<String>(){
         {
-            for (int i = 0; i < 50; i++) {
-                add("第"+(i+1)+"条数据");
+            for (int i = 0; i < 70; i++) {
+                add("第"+(i+1)+"条数据,绑定list中的数据");
             }
         }
     };
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String,String> mMap = new HashMap<String,String>(){
         {
             for (int i = 0; i < 10; i++) {
-                put("user"+(i+1),"Hello"+(i+1));
+                put("user"+(i+1),"Hello"+(i+1)+",绑定Map中数据");
             }
         }
     };
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            user.setName("我是后面赋值的姓名");
+            user.setName("我是后面赋值的姓名,数据更新");
         }
     };
 
@@ -51,19 +50,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
          dataBinding = DataBindingUtil.setContentView(this, R.layout
                 .activity_main);
+
+        //绑定类数据
         dataBinding.setUser(user);
+
+        //根据id绑定数据
         dataBinding.id.setText("通过ID赋值");
+
+        //绑定List集合数据
+        dataBinding.setListKey(5);
+        dataBinding.setList(mData);
+
+        //绑定Map集合数据
+        dataBinding.setMapKey("user5");
+        dataBinding.setMap(mMap);
+
+        //更新数据
+        handler.sendEmptyMessageDelayed(100,5000);
+
+        //点击事件
         dataBinding.setClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "点击事件", Toast.LENGTH_SHORT).show();
             }
         });
-
-        adapter = new ListAdapter(mData);
-        dataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        dataBinding.recyclerView.setAdapter(adapter);
-        handler.sendEmptyMessageDelayed(100,5000);
-
     }
 }
